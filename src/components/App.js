@@ -6,10 +6,12 @@ import Header from "./common/Header";
 import PageNotFound from "../components/PageNotFound";
 import CoursesPage from "./courses/coursesPage";
 import ManageCoursePage from "./courses/ManagrCoursePage";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
-    <div className="container-fluid">
+    <div className="mobile-nav">
       <Header />
       <Switch>
         <Route exact path="/" component={HomePage} />
@@ -19,6 +21,7 @@ function App() {
         <Route path="/course" component={ManageCoursePage} />
         <Route component={PageNotFound} />
       </Switch>
+      <ToastContainer autoClose="3000" hideProgressBar />
     </div>
   );
 }

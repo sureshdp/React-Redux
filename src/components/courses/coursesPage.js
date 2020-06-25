@@ -6,7 +6,9 @@ import * as authorActions from "../../redux/actions/authorActions";
 import { bindActionCreators } from "redux";
 import PropTypes from "prop-types";
 import CourseList from "./CourseList";
+import CourseGrid from "./CourseGrid";
 import Spinner from "../common/Spinner";
+import { toast } from "react-toastify";
 class CoursesPage extends React.Component {
   state = {
     redirectToAddCoursePage: false
@@ -26,7 +28,28 @@ class CoursesPage extends React.Component {
     }
   }
 
+  handleDeleteCourse = async course => {
+    toast.success("Course deleted...");
+    try {
+      await this.props.actions.deleteCourse(course);
+    } catch (error) {
+      toast.error("Delete failed..." + error.message, { autoClose: false });
+    }
+  };
+  /*handleSave = async course => {
+    try {
+      await this.props.actions.saveAsyncCourse(course);
+    } catch (error) {
+      toast.error("Save failed..." + error.message, { autoClose: false });
+    }
+    console.log(course);
+  };*/
+
   render() {
+    const handleSave = course => {
+      this.props.actions.saveCourse(course);
+      console.log(course);
+    };
     return (
       <>
         {this.state.redirectToAddCoursePage && <Redirect to="/course" />}
@@ -42,11 +65,11 @@ class CoursesPage extends React.Component {
             >
               Add Course
             </button>
-
             <CourseList
               onDeleteClick={this.handleDeleteCourse}
               courses={this.props.courses}
             />
+            <CourseGrid courses={this.props.courses} save={handleSave} />
           </>
         )}
       </>
@@ -57,7 +80,8 @@ CoursesPage.propTypes = {
   actions: PropTypes.object.isRequired,
   courses: PropTypes.array.isRequired,
   authors: PropTypes.array.isRequired,
-  loading: PropTypes.bool.isRequired
+  loading: PropTypes.bool.isRequired,
+  saveAsyncCourse: PropTypes.func.isRequired
 };
 function mapStateToProps(state) {
   return {
@@ -71,7 +95,8 @@ function mapStateToProps(state) {
             };
           }),
     authors: state.authors,
-    loading: state.apiCallsInProgess > 0
+
+    loading: state.apiCallsInProgress > 0
   };
 }
 
@@ -79,7 +104,9 @@ function mapDispatchToProps(dispatch) {
   return {
     actions: {
       loadCourses: bindActionCreators(courseActions.loadCourses, dispatch),
-      loadAuthors: bindActionCreators(authorActions.loadAuthors, dispatch)
+      loadAuthors: bindActionCreators(authorActions.loadAuthors, dispatch),
+      deleteCourse: bindActionCreators(courseActions.deleteCourse, dispatch),
+      saveCourse: bindActionCreators(courseActions.saveCourse, dispatch)
     }
   };
 }
