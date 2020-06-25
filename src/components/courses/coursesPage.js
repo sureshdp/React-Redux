@@ -36,20 +36,17 @@ class CoursesPage extends React.Component {
       toast.error("Delete failed..." + error.message, { autoClose: false });
     }
   };
-  /*handleSave = async course => {
+
+  handleSave = async course => {
     try {
       await this.props.actions.saveAsyncCourse(course);
+      //mapStateToProps;
+      console.log(course);
     } catch (error) {
       toast.error("Save failed..." + error.message, { autoClose: false });
     }
-    console.log(course);
-  };*/
-
+  };
   render() {
-    const handleSave = course => {
-      this.props.actions.saveCourse(course);
-      console.log(course);
-    };
     return (
       <>
         {this.state.redirectToAddCoursePage && <Redirect to="/course" />}
@@ -69,7 +66,7 @@ class CoursesPage extends React.Component {
               onDeleteClick={this.handleDeleteCourse}
               courses={this.props.courses}
             />
-            <CourseGrid courses={this.props.courses} save={handleSave} />
+            <CourseGrid courses={this.props.courses} save={this.handleSave} />
           </>
         )}
       </>
@@ -81,7 +78,7 @@ CoursesPage.propTypes = {
   courses: PropTypes.array.isRequired,
   authors: PropTypes.array.isRequired,
   loading: PropTypes.bool.isRequired,
-  saveAsyncCourse: PropTypes.func.isRequired
+  handleSave: PropTypes.func.isRequired
 };
 function mapStateToProps(state) {
   return {
@@ -106,7 +103,10 @@ function mapDispatchToProps(dispatch) {
       loadCourses: bindActionCreators(courseActions.loadCourses, dispatch),
       loadAuthors: bindActionCreators(authorActions.loadAuthors, dispatch),
       deleteCourse: bindActionCreators(courseActions.deleteCourse, dispatch),
-      saveCourse: bindActionCreators(courseActions.saveCourse, dispatch)
+      saveAsyncCourse: bindActionCreators(
+        courseActions.saveAsyncCourse,
+        dispatch
+      )
     }
   };
 }

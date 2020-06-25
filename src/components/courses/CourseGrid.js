@@ -27,6 +27,7 @@ function CourseGrid(props) {
       field: "category"
     }
   ];
+
   return (
     <XomeRGrid
       columns={columns}

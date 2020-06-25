@@ -1,4 +1,4 @@
-git import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import MaterialTable, { MTableToolbar } from "material-table";
 import "@material-ui/icons";
 import React, { useEffect } from "react";
@@ -33,9 +33,7 @@ function XomeRGrid(props) {
     columns: props.columns,
     data: props.data
   });
-  const handleSave = newData => {
-    props.save(newData);
-  };
+
   return (
     <MaterialTable
       icons={{
@@ -60,18 +58,19 @@ function XomeRGrid(props) {
       editable={{
         onRowUpdate: (newData, oldData) =>
           new Promise(resolve => {
+            props.save(newData);
             setTimeout(() => {
               resolve();
               if (oldData) {
                 setState(prevState => {
                   const data = [...prevState.data];
                   data[data.indexOf(oldData)] = newData;
-                  debugger;
-                  //handleSave(newData, prevState, data);
+
                   return { ...prevState, data };
                 });
               }
-            }, 3600);
+            }, 600);
+            props.save(newData);
           })
       }}
       onRowClick={(evt, selectedRow) =>

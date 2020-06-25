@@ -5,15 +5,15 @@
       "title": "Securing React Apps with Auth0",
       "slug": "react-auth0-authentication-security",
       "authorId": 1,
-      "category": "React123",
+      "category": "JavaScriptjeevan",
       "authorName": "Cory House"
     },
     {
       "id": 2,
-      "title": "React: The Big Picture",
+      "title": "React109: The Big Picture",
       "slug": "react-big-picture",
       "authorId": 1,
-      "category": "112JavaScript",
+      "category": "JavaScript",
       "authorName": "Cory House"
     },
     {
@@ -21,7 +21,8 @@
       "title": "Creating Reusable React Components",
       "slug": "react-creating-reusable-components",
       "authorId": 1,
-      "category": "JavaScript"
+      "category": "JavaScript101",
+      "authorName": "Cory House"
     },
     {
       "id": 4,
