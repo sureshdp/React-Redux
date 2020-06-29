@@ -8,13 +8,14 @@ import CoursesPage from "./courses/coursesPage";
 import ManageCoursePage from "./courses/ManagrCoursePage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Main from "../components/layout/Main";
 
 function App() {
   return (
     <div className="mobile-nav">
       <Header />
       <Switch>
-        <Route exact path="/" component={HomePage} />
+        <Route exact path="/" component={Header} />
         <Route path="/courses" component={CoursesPage} />
         <Route path="/about" component={AboutPage} />
         <Route path="/course/:slug" component={ManageCoursePage} />

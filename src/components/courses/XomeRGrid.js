@@ -20,6 +20,10 @@ import SortArrow from "@material-ui/icons/Sort";
 import Clear from "@material-ui/icons/Clear";
 import Editable from "@material-ui/icons/Edit";
 import Cancel from "@material-ui/icons/Cancel";
+import Card from "@material-ui/core/Card";
+import CardMedia from "@material-ui/core/CardMedia";
+import CardContent from "@material-ui/core/CardContent";
+import Divider from "@material-ui/core/Divider";
 
 function XomeRGrid(props) {
   const { useState } = React;
@@ -35,6 +39,8 @@ function XomeRGrid(props) {
   });
 
   return (
+    // <Card>
+    // <CardContent>
     <MaterialTable
       icons={{
         FirstPage: FirstPage,
@@ -87,6 +93,8 @@ function XomeRGrid(props) {
         })
       }}
     />
+    //    </CardContent>
+    //  </Card>
   );
 }
 XomeRGrid.propTypes = {

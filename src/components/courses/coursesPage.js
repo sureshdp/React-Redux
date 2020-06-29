@@ -40,8 +40,6 @@ class CoursesPage extends React.Component {
   handleSave = async course => {
     try {
       await this.props.actions.saveAsyncCourse(course);
-      //mapStateToProps;
-      console.log(course);
     } catch (error) {
       toast.error("Save failed..." + error.message, { autoClose: false });
     }
@@ -62,10 +60,7 @@ class CoursesPage extends React.Component {
             >
               Add Course
             </button>
-            <CourseList
-              onDeleteClick={this.handleDeleteCourse}
-              courses={this.props.courses}
-            />
+
             <CourseGrid courses={this.props.courses} save={this.handleSave} />
           </>
         )}
@@ -111,3 +106,9 @@ function mapDispatchToProps(dispatch) {
   };
 }
 export default connect(mapStateToProps, mapDispatchToProps)(CoursesPage);
+/*
+          <CourseList
+              onDeleteClick={this.handleDeleteCourse}
+              courses={this.props.courses}
+            />
+*/

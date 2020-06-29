@@ -6,8 +6,8 @@ import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import AboutPage from "../about/AboutPage";
 import CoursePage from "../courses/coursesPage";
-import Topbar from "../layout/Topbar";
-import Sidebar from "../layout/Sidebar";
+import Topbar from "./Topbar";
+import Sidebar from "./Sidebar";
 import ManageCoursePage from "../courses/ManagrCoursePage";
 const drawerWidth = 240;
 
@@ -116,7 +116,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Header() {
+export default function Main() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const [redirectToAddCourse, setAddCourse] = React.useState(false);
@@ -155,9 +155,14 @@ export default function Header() {
               <CoursePage />
             </Grid>
             <Grid item xs={12}>
-              <Paper className={classes.paper}></Paper>
+              <Paper className={classes.paper}>
+                <ManageCoursePage />
+              </Paper>
             </Grid>
             {/* About Page */}
+            <Grid item xs={12}>
+              <Paper className={classes.paper}>{/*<AboutPage />*/}</Paper>
+            </Grid>
           </Grid>
         </Container>
       </main>
